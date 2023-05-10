@@ -39,11 +39,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
-    /**
-     * Spring Security 5.7x 부터 WebSecurityConfigureAdapter 는 Deprecated.
-     * -> SecurityFilterChain, WebSecurityCustomizer 를 상황에 따라 빈으로 등록해 사용한다.
-     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -58,12 +53,6 @@ public class SecurityConfig {
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .accessDeniedHandler(jwtAccessDeniedHandler)
 
-                // enable h2-console
-                .and()
-                .headers()
-                .frameOptions()
-                .sameOrigin()
-
                 // 세션을 사용하지 않으므로 STATELESS 설정 (Security는 기본적으노 세션 방식을 사용)
                 .and()
                 .sessionManagement()
@@ -74,31 +63,13 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/", "/h2/**", "/simya/form-login", "/simya/auth", "/simya/form-signup", "/api/**", "/simya/chat/**", "/chat/**", "/ws/chat", "/ws-stomp", "/pub/**", "/sub/**", "/webjars/**", "/ws-stomp/**").permitAll()
+                .antMatchers( "/simya/form-login", "/simya/auth", "/simya/form-signup", "/api/**", "/simya/chat/**", "/chat/**", "/ws/chat", "/ws-stomp", "/pub/**", "/sub/**", "/webjars/**", "/ws-stomp/**").permitAll()
                 .anyRequest().authenticated()
-
-                // TODO 유저 권한을 가진 회원에게만 채팅방 접근 가능하도록
-
-                /*// 로그아웃 설정
-                .and()
-                .logout()
-                .logoutUrl("/simya/logout")
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)*/
-
-                /*
-                .deleteCookies("JSESSIONID")*/
 
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));   // addFilterBefore로 등록했던 JwtSecurityConfig 클래스 적용 추가
 
         return http.build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-                .antMatchers("/h2-console/**", "/favicon.ico", "/error");
     }
 
 }

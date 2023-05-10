@@ -1,12 +1,8 @@
 package com.backend.simya.domain.user.service;
 
 
-import com.backend.simya.domain.profile.dto.response.ProfileResponseDto;
 import com.backend.simya.domain.profile.entity.Profile;
-import com.backend.simya.domain.profile.repository.ProfileRepository;
 import com.backend.simya.domain.user.dto.request.FormSignupRequestDto;
-import com.backend.simya.domain.user.entity.LoginType;
-import com.backend.simya.domain.user.entity.Role;
 import com.backend.simya.domain.user.entity.User;
 import com.backend.simya.domain.user.repository.UserRepository;
 import com.backend.simya.global.common.BaseException;
@@ -19,9 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Objects;
-import java.util.Optional;
 
 import static com.backend.simya.global.common.BaseResponseStatus.*;
 
