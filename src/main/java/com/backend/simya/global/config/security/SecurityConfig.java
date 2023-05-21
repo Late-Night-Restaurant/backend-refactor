@@ -1,4 +1,4 @@
-package com.backend.simya.global.config;
+package com.backend.simya.global.config.security;
 
 import com.backend.simya.domain.jwt.service.TokenProvider;
 import com.backend.simya.global.config.jwt.JwtAccessDeniedHandler;

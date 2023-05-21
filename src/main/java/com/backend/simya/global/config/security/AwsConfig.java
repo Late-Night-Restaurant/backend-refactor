@@ -1,5 +1,6 @@
-package com.backend.simya.global.config;
+package com.backend.simya.global.config.security;
 
+import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -21,11 +22,10 @@ public class AwsConfig {
     private String region;
 
     @Bean
-    public AmazonS3Client amazonS3Client() {
-        BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(accessKey, secretKey);
+    public AmazonS3Client s3Client() {
+        AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
         return (AmazonS3Client) AmazonS3ClientBuilder.standard()
-                .withRegion(region)
-                .withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials))
-                .build();
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(region).build();
     }
 }
