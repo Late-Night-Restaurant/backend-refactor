@@ -30,7 +30,6 @@ cloud:
     region:
       static: ap-northeast-2
     credentials:
-      access-key: AKIAVI5C3P27B742ZY37
-      secret-key: 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
-    s3:
+      access-key: ${aws.access-key}
+      secret-key: ${aws.secret-key}
       bucket: simya
