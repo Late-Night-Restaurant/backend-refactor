@@ -32,4 +32,4 @@ cloud:
     credentials:
       access-key: ${aws.access-key}
       secret-key: ${aws.secret-key}
-      bucket: simya
+    s3: simya

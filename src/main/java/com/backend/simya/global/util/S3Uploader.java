@@ -25,7 +25,7 @@ public class S3Uploader {
 
     private final AmazonS3Client amazonS3Client;
 
-    @Value("${cloud.aws.s3.bucket}")
+    @Value("${cloud.aws.s3}")
     private String bucket;
 
     public String uploadImage(MultipartFile image) throws BaseException {

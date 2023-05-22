@@ -12,6 +12,8 @@ import com.backend.simya.global.common.BaseException;
 import com.backend.simya.global.common.BaseResponse;
 import com.backend.simya.global.common.ValidErrorDetails;
 import com.backend.simya.global.config.jwt.JwtFilter;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,11 +30,13 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 import static com.backend.simya.global.common.BaseResponseStatus.*;
+import static org.springframework.http.HttpStatus.OK;
 
 @Slf4j
 @RestController
 @RequestMapping("/simya")
 @RequiredArgsConstructor
+@Tag(name = "User", description = "User API Document")
 public class UserController {
 
     private final UserService userService;
@@ -40,6 +44,8 @@ public class UserController {
 
 
     @PostMapping("/form-signup")
+    @Operation(summary = "Sign up API", description = "put your user info to sign up")
+    @ResponseStatus(OK)
     public BaseResponse formSignup(@Valid @RequestPart FormSignupRequestDto formSignupRequestDto,
                                         @RequestPart(value = "image", required = false) MultipartFile profileImage,
                                         Errors errors) {
