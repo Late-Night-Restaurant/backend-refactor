@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/form-signup")
     @Operation(summary = "Sign up API", description = "put your user info to sign up")
     @ResponseStatus(OK)
-    public BaseResponse formSignup(@Valid @RequestPart FormSignupRequestDto formSignupRequestDto,
+    public BaseResponse formSignup(@Valid @RequestPart(value = "user") FormSignupRequestDto formSignupRequestDto,
                                         @RequestPart(value = "image", required = false) MultipartFile profileImage,
                                         Errors errors) {
         if (errors.hasErrors()) {

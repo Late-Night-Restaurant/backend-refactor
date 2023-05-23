@@ -63,7 +63,9 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers( "/simya/form-login", "/simya/auth", "/simya/form-signup", "/api/**", "/simya/chat/**", "/chat/**", "/ws/chat", "/ws-stomp", "/pub/**", "/sub/**", "/webjars/**", "/ws-stomp/**").permitAll()
+                .antMatchers( "/simya/form-login", "/simya/auth", "/simya/form-signup",
+                        "/api/**", "/simya/chat/**", "/chat/**", "/ws/chat", "/ws-stomp", "/pub/**",
+                        "/sub/**", "/webjars/**", "/ws-stomp/**","/swagger-ui/**", "/api-docs/**", "/api").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
